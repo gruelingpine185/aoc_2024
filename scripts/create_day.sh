@@ -31,7 +31,7 @@ create_day() {
   # download the prompt of the given day, extract text within <p> tags,
   # format the output to 80 columns
   curl "$aoc_url" | \
-    hxselect -c -s "\n\n" p | \
+    hxselect -c -s "\n\n" p, pre | \
     fold -s > "days/${padded_day}/prompt.md"
 
   # download puzzle input
