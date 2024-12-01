@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define ARR_SIZE(_arr) (sizeof(_arr) / sizeof(*_arr))
 #define MAX(_l, _r) (((_l) >= (_r))? (_l): (_r))
 #define MIN(_l, _r) (((_l) <= (_r))? (_l): (_r))
 
@@ -12,25 +13,28 @@ static void skip_whitespace(const char* _str, size_t _size, size_t* _idx);
 static void collect_number(const char* _str, size_t _size, size_t* _idx, int* _value);
 static size_t partition(int* _arr, size_t _low, size_t _high);
 static void quick_sort(int* _arr, int _low, int _high);
-static void part_1(const char* _input, long _size);
+static void extract_values(const char* _input, long _size, int* _arr_l, int* _arr_r);
+static void part_1(const int* _arr_l, const int* _arr_r, size_t _size);
+
 
 int main(int _argc, char** _argv) {
-    const char* part1_pathname = NULL;
-    const char* part2_pathname = NULL;
-    if(_argc >= 2) {
-        part1_pathname = _argv[1];
-        part2_pathname = _argv[2];
+    const char* input_pathname = NULL;
+    if(_argc == 2) {
+        input_pathname = _argv[1];
     } else {
-        printf("Expected 2 arguments. <part1 input file> [part2 input file]\n");
+        printf("Expected 1 arguments. <input file>\n");
         return 1;
     }
 
-    char* part1_input = NULL;
-    long part1_input_size = 0;
-    if(!read_file(part1_pathname, &part1_input, &part1_input_size)) return 1;
+    char* input = NULL;
+    long input_size = 0;
+    if(!read_file(input_pathname, &input, &input_size)) return 1;
 
-    part_1(part1_input, part1_input_size);
-    free(part1_input);
+    int list_left[1000] = {0};
+    int list_right[1000] = {0};
+    extract_values(input, input_size, list_left, list_right);
+    part_1(list_left, list_right, ARR_SIZE(list_left));
+    free(input);
     return 0;
 }
 
@@ -141,22 +145,18 @@ static void quick_sort(int* _arr, int _low, int _high) {
     }
 }
 
-static void part_1(const char* _input, long _size) {
-    if((!_input) || (_size <= 0)) return;
-
+static void extract_values(const char* _input, long _size, int* _arr_l, int* _arr_r) {
     int list_selector = 0;
     int list_index = 0;
-    int list_left[1000] = {0};
-    int list_right[1000] = {0}; 
     int value = 0;
     for(size_t i = 0; i < _size - 1;) {
         if(is_digit(_input[i])) {
             collect_number(_input, (size_t) _size, &i, &value);
             if(list_selector & 1) {
-                list_right[list_index] = value;
+                _arr_r[list_index] = value;
                 list_index++;
             } else {
-                list_left[list_index] = value;
+                _arr_l[list_index] = value;
             }
 
             list_selector++;
@@ -167,14 +167,19 @@ static void part_1(const char* _input, long _size) {
         }
     }
 
-    quick_sort(list_left, 0, 999);
-    quick_sort(list_right, 0, 999);
+    quick_sort(_arr_l, 0, 999);
+    quick_sort(_arr_r, 0, 999);
+}
+
+static void part_1(const int* _arr_l, const int* _arr_r, size_t _size) {
+    if((!_arr_l) || (!_arr_r) || (_size <= 0)) return;
+
     int sum = 0;
     int delta = 0;
-    for(size_t i = 0; i < 1000; i++) {
+    for(size_t i = 0; i < _size; i++) {
         delta =
-            MAX(list_left[i], list_right[i]) -
-            MIN(list_left[i], list_right[i]);
+            MAX(_arr_l[i], _arr_r[i]) -
+            MIN(_arr_l[i], _arr_r[i]);
         sum += delta;
     }
 
