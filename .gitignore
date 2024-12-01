@@ -1,6 +1,6 @@
 prompt.md
 a.out
-input_*.txt
+input.txt
 
 # lldb
 *.dSYM/
