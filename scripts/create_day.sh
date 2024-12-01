@@ -18,8 +18,8 @@ create_day() {
     part="1"
   fi
 
-  # local year=$(date "+%Y")
-  local aoc_url="https://adventofcode.com/2023/day/${day}"
+  local year=$(date "+%Y")
+  local aoc_url="https://adventofcode.com/${year}/day/${day}"
 
   # download the prompt of the given day, extract text within <p> tags,
   # format the output to 80 columns
