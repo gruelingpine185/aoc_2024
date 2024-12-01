@@ -35,8 +35,8 @@ create_day() {
     fold -s > "days/${padded_day}/prompt.md"
 
   # download puzzle input
-  curl "${aoc_url}/input" -b cookies.txt -c cookies.txt | \
-    hxselect -c -s "\n\n" p > "days/${padded_day}/input_${part}.txt"
+  curl --cookie session=$(printenv AOC_SESSION) "${aoc_url}/input" \
+    > "days/${padded_day}/input_${part}.txt"
 }
 
 if [[ $# != 2 ]]; then
