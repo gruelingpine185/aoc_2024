@@ -18,8 +18,15 @@ create_day() {
     part="1"
   fi
 
+  if [[ -z "$AOC_SESSION" ]]; then
+    echo "Please export your AoC session"
+    echo "  export AOC_SESSION=<session>"
+    exit 0
+  fi
+
   local year=$(date "+%Y")
   local aoc_url="https://adventofcode.com/${year}/day/${day}"
+  local aoc_session=$(printenv AOC_SESSION)
 
   # download the prompt of the given day, extract text within <p> tags,
   # format the output to 80 columns
