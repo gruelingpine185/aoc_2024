@@ -35,9 +35,8 @@ create_day() {
   fi
 }
 
-if [[ $# != 2 ]]; then
-  echo "create_day.sh <day> <part>"
 if [[ $# != 1 ]]; then
+  echo "create_day.sh <day>"
   exit 0
 fi
 
