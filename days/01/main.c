@@ -15,6 +15,7 @@ static size_t partition(int* _arr, size_t _low, size_t _high);
 static void quick_sort(int* _arr, int _low, int _high);
 static void extract_values(const char* _input, long _size, int* _arr_l, int* _arr_r);
 static void part_1(const int* _arr_l, const int* _arr_r, size_t _size);
+static void part_2(const int* _arr_l, const int* _arr_r, size_t _size);
 
 
 int main(int _argc, char** _argv) {
@@ -34,6 +35,7 @@ int main(int _argc, char** _argv) {
     int list_right[1000] = {0};
     extract_values(input, input_size, list_left, list_right);
     part_1(list_left, list_right, ARR_SIZE(list_left));
+    part_2(list_left, list_right, ARR_SIZE(list_left));
     free(input);
     return 0;
 }
@@ -184,4 +186,21 @@ static void part_1(const int* _arr_l, const int* _arr_r, size_t _size) {
     }
 
     printf("part 1: %d\n", sum);
+}
+
+static void part_2(const int* _arr_l, const int* _arr_r, size_t _size) {
+    int sum = 0;
+    int n = 0;
+    for(size_t i = 0; i < _size; i++) {
+        n = 0;
+        for(size_t j = 0; j < _size; j++) {
+            if(_arr_l[i] == _arr_r[j]) {
+                n++;
+            }
+        }
+        
+        sum += n * _arr_l[i];
+    }
+
+    printf("part 2: %d\n", sum);
 }

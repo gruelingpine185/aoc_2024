@@ -2,4 +2,5 @@
 
 | Day | Language | Part 1 | Part 2 |
 | --- | -------- | ------ | ------ |
-| 1 | C | done | - | 
+| 1 | C | done | done | 
+| 2 | - | - | - | 
