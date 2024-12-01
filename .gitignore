@@ -1,0 +1,6 @@
+prompt.md
+a.out
+input_*.txt
+
+# lldb
+*.dSYM/
