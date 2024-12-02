@@ -18,12 +18,15 @@ each subdirectory of `./days/` directly from the terminal.
 Code blocks may be executed directly within Slides with `<C-e>` -- that is, 
 `Control + e` --, which will build, run, and embed my solutions into the slides.
 
+In order for this to work, you must be within the directory containing the 
+executable.
+
 ## Progress
 
 | Day | Language | Part 1 | Part 2 |
 | --- | -------- | ------ | ------ |
 | [01](./days/01) | C | done | done | 
-| 02 | - | - | - |
+| [02](./days/02) | Python | done | - | 
 
 
 *Note to self: The script needs some adjustments to download the prompt for 
