@@ -5,7 +5,7 @@ language since Covid and by far my favorite thus far.
 
 ## Building & Running
 
-Navigate to `./aoc_2024/days/01/`. One there, you may build and run via the 
+Navigate to `./aoc_2024/days/01/`. Once there, you may build and run via the 
 following commands. Any C compiler can be used in place of Clang.
 
 ```bash

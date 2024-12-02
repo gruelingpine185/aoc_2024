@@ -6,7 +6,7 @@ people... Enter Python!
 
 ## Building & Running
 
-Navigate to `./aoc_2024/days/02/`. One there, you may build and run via the following commands:
+Navigate to `./aoc_2024/days/02/`. Once there, you may build and run via the following commands:
 
 ```bash
 chmod +x ./day2.py
