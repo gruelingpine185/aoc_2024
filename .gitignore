@@ -1,5 +1,5 @@
 prompt.md
-days/*/day*
+days/*/day[0123456789][0123456789]
 a.out
 input.txt
 
