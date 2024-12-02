@@ -7,7 +7,7 @@ def main():
         print("Expected <input file>")
         exit(0)
 
-    levels, safe_levels, unsafe_levels = extract_levels(sys.argv[1])
+    safe_levels, unsafe_levels = extract_levels(sys.argv[1])
     print(f"part 1: {part_1(safe_levels)}")
 
 def cmp(l, r):
@@ -60,7 +60,7 @@ def extract_levels(pathname):
         else:
             safe_levels.append(level)
 
-    return levels, safe_levels, unsafe_levels
+    return safe_levels, unsafe_levels
 
 def part_1(safe_levels):
     return len(safe_levels)
