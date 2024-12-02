@@ -23,7 +23,7 @@ int main(int _argc, char** _argv) {
     if(_argc == 2) {
         input_pathname = _argv[1];
     } else {
-        printf("Expected 1 arguments. <input file>\n");
+        printf("Expected 1 argument. <input file>\n");
         return 1;
     }
 
