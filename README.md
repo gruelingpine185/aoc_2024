@@ -16,8 +16,7 @@ If you have the Slides program installed, you may view README.md files within
 each subdirectory of `./days/` directly from the terminal.
 
 Code blocks may be executed directly within Slides with `<C-e>` -- that is, 
-`Control + e` --, which will build, run, and embed my solutions into the 
-commands nto the slides.
+`Control + e` --, which will build, run, and embed my solutions into the slides.
 
 ## Progress
 
