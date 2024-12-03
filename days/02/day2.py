@@ -11,57 +11,30 @@ def main():
     print(f"part 1: {part_1(safe_levels)}")
     print(f"part 2: {part_2(safe_levels, unsafe_levels)}")
 
-def cmp(l, r):
-    if l == r:
-        return 0
-    elif l > r:
-        return -1
-    else:
-        return 1
+def cmp(op_pair):
+    return ((op_pair[0] > op_pair[1]) - (op_pair[0] < op_pair[1]))
 
-def validate(dir, l, r):
-    if dir == 0:
-        return False
-    elif cmp(l, r) != dir:
-        return False
-    elif abs(l - r) > 3:
-        return False
-
-    return True
+def validate(dir, pair):
+    return ((dir == 0) or (cmp(pair) != dir) or (abs(pair[0] - pair[1]) > 3))
 
 def first_error_idx(level):
-    l = int(level[0])
-    r = int(level[1])
-    dir = cmp(l, r)
-    if not validate(dir, l, r):
-        return 1
-
-    is_safe = True
-    for i in range(1, len(level) - 1):
-        l = int(level[i])
-        r = int(level[i + 1])
-        if not validate(dir, l, r):            
+    dir = cmp((int(level[0]), int(level[1])))
+    for i in range(len(level) - 1):
+        if validate(dir, (int(level[i]), int(level[i + 1]))):
             return i
 
-    if is_safe == True:
-        return -1
+    return -1
 
 def extract_levels(pathname):
-    levels = []
-    safe_levels = []
-    unsafe_levels = []
+    levels, safe, unsafe = [], [], []
     with open(pathname) as file:
-        for line in file:
-            levels.append(line.split("\n")[0].split(" "))
+        levels = [line.strip().split() for line in file]
 
     for level in levels:
         err_idx = first_error_idx(level)
-        if err_idx != -1:
-            unsafe_levels.append([err_idx, level])
-        else:
-            safe_levels.append(level)
+        safe.append(level) if err_idx == -1 else unsafe.append([err_idx, level])
 
-    return safe_levels, unsafe_levels
+    return safe, unsafe
 
 def part_1(safe_levels):
     return len(safe_levels)
@@ -69,10 +42,9 @@ def part_1(safe_levels):
 def part_2(safe_levels, unsafe_levels):
     safe = len(safe_levels)
     for err_idx, level in unsafe_levels:
-        for i in range(err_idx - 1,len(level)):
-            copy = level[:i] + level[i + 1:]
-            if first_error_idx(copy) == -1:
-                print(f"orig: {level}\ncopy: {copy}\n")
+        for i in range(err_idx - 1, err_idx + 2):
+            print(i - err_idx)
+            if first_error_idx(level[:i] + level[i + 1:]) == -1:
                 safe += 1
                 break
 
