@@ -43,7 +43,6 @@ def part_2(safe_levels, unsafe_levels):
     safe = len(safe_levels)
     for err_idx, level in unsafe_levels:
         for i in range(err_idx - 1, err_idx + 2):
-            print(i - err_idx)
             if first_error_idx(level[:i] + level[i + 1:]) == -1:
                 safe += 1
                 break
