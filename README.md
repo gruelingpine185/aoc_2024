@@ -26,7 +26,8 @@ executable.
 | Day | Language | Part 1 | Part 2 |
 | --- | -------- | ------ | ------ |
 | [01](./days/01) | C | done | done | 
-| [02](./days/02) | Python | done | - | 
+| [02](./days/02) | Python | done | done | 
+| [03](./days/03) | Helix Editor | done | - |
 
 
 *Note to self: The script needs some adjustments to download the prompt for 
